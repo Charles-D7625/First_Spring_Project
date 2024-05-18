@@ -1,8 +1,10 @@
-package com.example.demo;
+package com.example.demo.classes;
 
 //import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import com.example.demo.interfaces.Music;
 
 @SpringBootApplication
 public class DemoApplication {
@@ -13,10 +15,11 @@ public class DemoApplication {
 			"applicationContext.xml"
 		);
 
-		TestBean testBean = context.getBean("testBean", TestBean.class);
+		Music musicBean = context.getBean("musicBean", Music.class);
 
-		System.out.println(testBean.getName());
+		MusicPlayer musicPlayer = new MusicPlayer(musicBean);
 
+		musicPlayer.PlayMusic();
 		context.close();
 	}
 
