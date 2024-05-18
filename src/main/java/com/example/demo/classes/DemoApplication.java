@@ -4,8 +4,6 @@ package com.example.demo.classes;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.example.demo.interfaces.Music;
-
 @SpringBootApplication
 public class DemoApplication {
 
@@ -15,10 +13,7 @@ public class DemoApplication {
 			"applicationContext.xml"
 		);
 
-		Music musicBean = context.getBean("musicBean", Music.class);
-
-		MusicPlayer musicPlayer = new MusicPlayer(musicBean);
-
+		MusicPlayer musicPlayer = context.getBean("musicPlayer", MusicPlayer.class);
 		musicPlayer.PlayMusic();
 		context.close();
 	}
