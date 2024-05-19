@@ -8,17 +8,19 @@
         http://www.springframework.org/schema/context/spring-context.xsd">
 
         <context:property-placeholder location="classpath:musicPlayer.properties"/>
-
-        <bean id="classicalMusicBean"
-            class="com.example.demo.classes.ClassicalMusic">
+        <!--Тут пишуться init и destroy методы для бинов и factory-method-->
+        <bean id="classicalMusicBean" 
+            class="com.example.demo.classes.ClassicalMusic"
+            factory-method="getClassicalMusic"> 
         </bean>
 
         <bean id="rockMusicBean"
             class="com.example.demo.classes.RockMusic">
         </bean>
 
+        <!--Тут пишуться scope'ы-->
         <bean id="musicPlayer"
-                class="com.example.demo.classes.MusicPlayer">
+                class="com.example.demo.classes.MusicPlayer"> 
             <constructor-arg>
             <list>
                 <ref bean="classicalMusicBean"/>

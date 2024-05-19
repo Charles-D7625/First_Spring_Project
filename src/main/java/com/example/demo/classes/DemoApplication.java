@@ -13,11 +13,12 @@ public class DemoApplication {
 			"applicationContext.xml"
 		);
 
-		MusicPlayer musicPlayer = context.getBean("musicPlayer", MusicPlayer.class);
-		musicPlayer.PlayMusic();
+		MusicPlayer firstMusicPlayer = context.getBean("musicPlayer", MusicPlayer.class);
 
-		System.out.println(musicPlayer.getName());
-		System.out.println(musicPlayer.getVolume());
+		firstMusicPlayer.PlayMusic();
+
+		System.out.println(firstMusicPlayer.getName());
+		System.out.println(firstMusicPlayer.getVolume());
 
 		context.close();
 	}
