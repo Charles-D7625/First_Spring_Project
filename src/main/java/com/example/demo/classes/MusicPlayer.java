@@ -1,50 +1,45 @@
 package com.example.demo.classes;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Random;
+
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 import com.example.demo.interfaces.Music;
 
 public class MusicPlayer {
 
-    //private Music music;
-    private List<Music> musicList = new ArrayList<>();
-
+    @Value("${musicPlayer.name}")
     private String name;
+    @Value("${musicPlayer.volume}")
     private int volume;
 
-    public MusicPlayer() {
+    private Music music;
 
-    }
-
-    public MusicPlayer(List<Music> musicList) {
-        this.musicList = musicList;
-    }
-    
-    public void setMusic(Music music) {
-        this.musicList.add(music);
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
+    private ArrayList<Music> musicList = new ArrayList<>();
 
     public String getName() {
         return name;
-    }
-
-    public void setVolume(int volume) {
-        this.volume = volume;
     }
 
     public int getVolume() {
         return volume;
     }
 
+    public MusicPlayer(@Qualifier("rockMusic") Music music) {
+        this.music = music;
+    }
+    
+    public MusicPlayer(ArrayList<Music> musicList) {
+        this.musicList = musicList;
+    }
+
     public void PlayMusic() {
-        
-        for (Music music : musicList) {
-            System.out.println("Playing: " + music.getSong());
-        }
+
+        Random rand = new Random();
+
+        System.out.println("Playing: " + musicList.get(rand.nextInt(musicList.size())).getSong());
     }
 }

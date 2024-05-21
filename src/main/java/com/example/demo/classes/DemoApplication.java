@@ -1,24 +1,25 @@
 package com.example.demo.classes;
 
-//import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import com.example.demo.configurations.SpringConfig;
 
 @SpringBootApplication
 public class DemoApplication {
 
 	public static void main(String[] args) {
-		//SpringApplication.run(DemoApplication.class, args);
-		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(
-			"applicationContext.xml"
+		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(
+			SpringConfig.class
 		);
+		
+		MusicPlayer musicPlayer = context.getBean("musicPlayer", MusicPlayer.class);
 
-		MusicPlayer firstMusicPlayer = context.getBean("musicPlayer", MusicPlayer.class);
+		musicPlayer.PlayMusic();
 
-		firstMusicPlayer.PlayMusic();
+		System.out.println(musicPlayer.getName());
+		System.out.println(musicPlayer.getVolume());
 
-		System.out.println(firstMusicPlayer.getName());
-		System.out.println(firstMusicPlayer.getVolume());
 
 		context.close();
 	}
