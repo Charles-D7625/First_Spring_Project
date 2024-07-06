@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.classes;
 
 public class TestBean {
     private String name;
